@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛡️ BlinkGuard
+> Pre-Sign AI Transaction Firewall & Natural-Language Copilot on Solana
 
-## Getting Started
+BlinkGuard bridges conversational DeFi execution and proactive wallet security. By simulating transaction balance diffs and running real-time heuristic threat detection via **Gemini 2.5 Flash**, BlinkGuard intercepts malicious drainers, token authority theft, and phishing blind-signs before any transaction reaches the wallet.
 
-First, run the development server:
+---
 
+## 💡 The Problem
+- **Blind Signing**: Millions of dollars are lost monthly across Solana to unbounded token delegation and wallet drainer scripts disguised as legitimate dApps.
+- **DeFi Friction**: Fragmented swap aggregators and complex slippage/route settings create high barriers for everyday users.
+
+## 🚀 Key Features
+- **Natural-Language Copilot**: Parses plain English swap instructions (`"Swap 0.5 SOL to USDC"`) into optimal routing parameters using Gemini 2.5 Flash structured outputs.
+- **Pre-Sign Simulation Firewall**: Analyzes incoming instructions, detects balance drains, and assigns a calibrated risk score (0–100).
+- **Automated Threat Interception**: Flags high-risk vectors (e.g., unbounded transfer delegates, drainer contracts) and locks the signature button to prevent asset loss.
+- **Jupiter v6 Aggregation**: Fetches real-time market rates and route information directly on Solana.
+- **Cryptographic Wallet Attestation**: Signs verified pre-execution audit receipts natively via Phantom Wallet.
+
+---
+
+## 🛠️ Tech Stack
+- **Frontend / Framework**: Next.js (App Router), React, Tailwind CSS, Lucide Icons
+- **Blockchain & Wallet**: Solana Web3.js (`@solana/web3.js`), Solana Wallet Adapter, Phantom
+- **AI Engine**: Google GenAI SDK (`gemini-2.5-flash` with Structured Outputs)
+- **DeFi Routing**: Jupiter Aggregator API v6
+- **RPC Infrastructure**: Helius / Solana Devnet
+
+---
+
+## 🏗️ Architecture Flow
+
+1. **User Input**: User submits a command or selects a test scenario (e.g., Safe Swap vs. Malicious Drainer Phish).
+2. **AI Intent & Threat Audit**: Next.js API route passes the intent to Gemini 2.5 Flash, generating a structured assessment (`isMalicious`, `threatReason`, `amount`, `action`).
+3. **Route & Rate Fetching**: If benign, the route fetches live swap quotes from Jupiter Aggregator v6. If malicious, the engine triggers a threat lock (`Risk Score: 99/100`).
+4. **Client Verification**: The user reviews the audited summary, inflows, and outflows.
+5. **Cryptographic Attestation**: The user approves and signs the audit receipt using Phantom Wallet.
+
+---
+
+## ⚙️ Quickstart
+
+### 1. Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone [https://github.com/anjarkar25-max/blinkguard.git](https://github.com/anjarkar25-max/blinkguard.git)
+cd blinkguard
