@@ -99,3 +99,11 @@ User / Agent Prompt
   "action": "BLOCKED",
   "reason": "Unbounded authority delegation / drainer signature vector detected."
 }
+
+### Request Payload
+```json
+{
+  "prompt": "Swap 0.5 SOL to USDC with 1% slippage",
+  "userAddress": "YourSolanaPublicKeyHere"
+}
+```
