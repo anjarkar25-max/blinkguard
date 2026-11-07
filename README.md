@@ -1,45 +1,66 @@
 # 🛡️ BlinkGuard
-> Pre-Sign AI Transaction Firewall & Natural-Language Copilot on Solana
 
-BlinkGuard bridges conversational DeFi execution and proactive wallet security. By simulating transaction balance diffs and running real-time heuristic threat detection via **Gemini 2.5 Flash**, BlinkGuard intercepts malicious drainers, token authority theft, and phishing blind-signs before any transaction reaches the wallet.
+> **Autonomous Pre-Sign AI Firewall & Intent-Driven Trading Copilot for Solana**  
+> Active preflight security middleware protecting users and autonomous agents from wallet drainers, blind signing, and malicious authority delegations.
 
 ---
 
-## 💡 The Problem
-- **Blind Signing**: Millions of dollars are lost monthly across Solana to unbounded token delegation and wallet drainer scripts disguised as legitimate dApps.
-- **DeFi Friction**: Fragmented swap aggregators and complex slippage/route settings create high barriers for everyday users.
+## 🚀 Overview
 
-## 🚀 Key Features
-- **Natural-Language Copilot**: Parses plain English swap instructions (`"Swap 0.5 SOL to USDC"`) into optimal routing parameters using Gemini 2.5 Flash structured outputs.
-- **Pre-Sign Simulation Firewall**: Analyzes incoming instructions, detects balance drains, and assigns a calibrated risk score (0–100).
-- **Automated Threat Interception**: Flags high-risk vectors (e.g., unbounded transfer delegates, drainer contracts) and locks the signature button to prevent asset loss.
-- **Jupiter v6 Aggregation**: Fetches real-time market rates and route information directly on Solana.
-- **Cryptographic Wallet Attestation**: Signs verified pre-execution audit receipts natively via Phantom Wallet.
+**BlinkGuard** provides real-time, pre-execution threat analysis and intent routing on the Solana blockchain. By integrating Google Gemini 2.5 Flash threat simulation with Jupiter Aggregator v6, BlinkGuard inspects and scores transaction instructions *before* Phantom or Solana wallet prompts request a signature.
+
+It exposes a standard **Solana Agent Skill** endpoint (`/api/skill`), allowing autonomous trading bots, LangChain agents, and ElizaOS swarms to verify transactions before submitting on-chain.
+
+- **Live Deployment:** [blinkguard-uoq6-six.vercel.app](https://blinkguard-uoq6-six.vercel.app)
+- **Agent Skill Endpoint:** [blinkguard-uoq6-six.vercel.app/api/skill](https://blinkguard-uoq6-six.vercel.app/api/skill)
+- **Video Walkthrough:** [YouTube Demo](https://youtu.be/ZmDDf0jS_j4)
+
+---
+
+## ⚡ Core Architecture & Features
+
+### 1. Natural-Language Intent Engine
+* Accepts plain-text trading requests (e.g., *"Swap 0.1 SOL to USDC"* or *"Claim free airdrop tokens"*).
+* Resolves standard SPL mints (`SOL`, `USDC`, `USDT`, `BONK`, `JUP`) and queries Jupiter V6 API for live execution routes.
+
+### 2. Pre-Sign AI Threat Firewall
+* Audits intent strings and instruction payloads against known threat vectors:
+  * Drainer heuristic patterns (`claim free`, `delegation`, `unbounded approval`).
+  * Slippage and anomalous quote parameters.
+* Outputs a granular **Risk Score (0–100)**, an execution verdict (`SAFE`, `CAUTION`, `BLOCKED`), and human-readable risk notes.
+
+### 3. Signature Lock & Attestation
+* **Signature Lockdown:** Blocks wallet execution automatically when high risk (>70) is detected.
+* **Cryptographic Attestation:** Safe transactions request a preflight attestation signature via Phantom Wallet (`signMessage`) to log proof-of-review.
+
+### 4. Solana Agent Skills Standard Middleware
+* Complies with autonomous agent tool calling standards via `/api/skill`.
+* Allows AI agents and automated swarms to verify intents programmatically via HTTP `POST` before constructing raw transactions.
 
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend / Framework**: Next.js (App Router), React, Tailwind CSS, Lucide Icons
-- **Blockchain & Wallet**: Solana Web3.js (`@solana/web3.js`), Solana Wallet Adapter, Phantom
-- **AI Engine**: Google GenAI SDK (`gemini-2.5-flash` with Structured Outputs)
-- **DeFi Routing**: Jupiter Aggregator API v6
-- **RPC Infrastructure**: Helius / Solana Devnet
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | Next.js 15 (App Router), React, Tailwind CSS |
+| **Blockchain** | Solana Web3.js, Solana Wallet Adapter |
+| **DEX Aggregation** | Jupiter Swap API v6 |
+| **AI Threat Engine** | Google Gemini 2.5 Flash (`@google/genai`) |
+| **Agent Middleware** | Solana Agent Skills Standard (`/api/skill`, `lib/solanaAgentSkill.ts`) |
+| **Deployment** | Vercel, Helius RPC |
 
 ---
 
-## 🏗️ Architecture Flow
+## 🔌 Solana Agent Skill Specification
 
-1. **User Input**: User submits a command or selects a test scenario (e.g., Safe Swap vs. Malicious Drainer Phish).
-2. **AI Intent & Threat Audit**: Next.js API route passes the intent to Gemini 2.5 Flash, generating a structured assessment (`isMalicious`, `threatReason`, `amount`, `action`).
-3. **Route & Rate Fetching**: If benign, the route fetches live swap quotes from Jupiter Aggregator v6. If malicious, the engine triggers a threat lock (`Risk Score: 99/100`).
-4. **Client Verification**: The user reviews the audited summary, inflows, and outflows.
-5. **Cryptographic Attestation**: The user approves and signs the audit receipt using Phantom Wallet.
+Autonomous agents can invoke BlinkGuard directly:
 
----
+**Endpoint:** `POST https://blinkguard-uoq6-six.vercel.app/api/skill`
 
-## ⚙️ Quickstart
-
-### 1. Clone the Repository
-```bash
-git clone [https://github.com/anjarkar25-max/blinkguard.git](https://github.com/anjarkar25-max/blinkguard.git)
-cd blinkguard
+### Request Payload
+```json
+{
+  "prompt": "Swap 0.5 SOL to USDC with 1% slippage",
+  "userAddress": "YourSolanaPublicKeyHere"
+}
