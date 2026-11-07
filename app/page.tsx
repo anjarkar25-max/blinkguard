@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
@@ -114,66 +114,59 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#07090e] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(14,165,233,0.15),rgba(0,0,0,0))] text-slate-100 flex flex-col items-center justify-center p-6 selection:bg-cyan-500/30">
-      
-      {/* Container Card */}
-      <div className="w-full max-w-2xl bg-slate-900/60 backdrop-blur-2xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-black/80 relative overflow-hidden">
+    <main style={{ minHeight: "100vh", backgroundColor: "#080b11", color: "#f1f5f9", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "24px", fontFamily: "sans-serif" }}>
+      <div style={{ width: "100%", maxWidth: "650px", backgroundColor: "rgba(15, 23, 42, 0.75)", backdropFilter: "blur(16px)", border: "1px solid rgba(51, 65, 85, 0.8)", borderRadius: "24px", padding: "32px", boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.8)" }}>
         
-        {/* Subtle Ambient Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent" />
-
         {/* Header */}
-        <header className="flex items-center justify-between pb-6 border-b border-slate-800/80 mb-6">
-          <div className="flex items-center gap-3.5">
-            <div className="p-3 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shadow-lg shadow-cyan-500/10">
-              <ShieldCheck className="w-7 h-7" />
+        <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(51, 65, 85, 0.6)", paddingBottom: "20px", marginBottom: "24px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+            <div style={{ padding: "10px", borderRadius: "14px", backgroundColor: "rgba(6, 182, 212, 0.15)", border: "1px solid rgba(6, 182, 212, 0.3)", color: "#22d3ee", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <ShieldCheck style={{ width: "28px", height: "28px" }} />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-2xl font-bold tracking-tight text-white">BlinkGuard</h1>
-                <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-semibold tracking-wider">
-                  AI Firewall
-                </span>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <h1 style={{ fontSize: "22px", fontWeight: "700", margin: 0, color: "#fff" }}>BlinkGuard</h1>
+                <span style={{ fontSize: "10px", textTransform: "uppercase", fontFamily: "monospace", padding: "2px 8px", borderRadius: "9999px", backgroundColor: "rgba(6, 182, 212, 0.2)", color: "#67e8f9", border: "1px solid rgba(6, 182, 212, 0.4)", fontWeight: "600" }}>AI Firewall</span>
               </div>
-              <p className="text-xs text-slate-400 mt-0.5">Pre-Sign AI Transaction Firewall & Natural-Language Copilot</p>
+              <p style={{ fontSize: "12px", color: "#94a3b8", margin: "4px 0 0 0" }}>Pre-Sign AI Transaction Firewall & Natural-Language Copilot</p>
             </div>
           </div>
-          <WalletMultiButton className="!bg-slate-800 hover:!bg-slate-700 !border !border-slate-700/80 !rounded-xl !h-10 !px-4 !text-xs !font-semibold !transition-all" />
+          <WalletMultiButton style={{ backgroundColor: "#1e293b", border: "1px solid rgba(71, 85, 105, 0.8)", borderRadius: "12px", height: "40px", padding: "0 16px", fontSize: "12px", fontWeight: "600" }} />
         </header>
 
-        {/* Input Box */}
-        <section className="space-y-4">
-          <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-            <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> Natural-Language Copilot
+        {/* Input */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          <label style={{ fontSize: "11px", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.05em", color: "#94a3b8", display: "flex", alignItems: "center", gap: "6px" }}>
+            <Sparkles style={{ width: "14px", height: "14px", color: "#22d3ee" }} /> Natural-Language Copilot
           </label>
-          <div className="flex gap-2">
+          <div style={{ display: "flex", gap: "10px" }}>
             <input
               type="text"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && runAnalysis(prompt)}
               placeholder='Try: "Swap 0.5 SOL to USDC" or "Claim free 10,000 AIRDROP now"'
-              className="flex-1 bg-slate-950/90 border border-slate-800/90 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/80 focus:ring-1 focus:ring-cyan-500/50 transition-all"
+              style={{ flex: 1, backgroundColor: "#020617", border: "1px solid rgba(51, 65, 85, 0.9)", borderRadius: "12px", padding: "12px 16px", fontSize: "14px", color: "#fff", outline: "none" }}
             />
             <button
               onClick={() => runAnalysis(prompt)}
               disabled={isAuditing}
-              className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-md shadow-cyan-500/20 disabled:opacity-50 flex items-center gap-2 cursor-pointer"
+              style={{ backgroundColor: "#06b6d4", color: "#020617", fontWeight: "700", padding: "0 20px", borderRadius: "12px", fontSize: "14px", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: "6px" }}
             >
-              {isAuditing ? "Auditing..." : <>Execute <ArrowRight className="w-4 h-4" /></>}
+              {isAuditing ? "Auditing..." : <>Execute <ArrowRight style={{ width: "16px", height: "16px" }} /></>}
             </button>
           </div>
 
-          {/* Test Presets */}
-          <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
-            <span className="text-slate-500 font-medium">Quick Presets:</span>
+          {/* Quick Presets */}
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px", paddingTop: "4px", fontSize: "12px" }}>
+            <span style={{ color: "#64748b", fontWeight: "500" }}>Quick Presets:</span>
             <button
               onClick={() => {
                 const val = "Swap 0.5 SOL to USDC with 0.5% slippage";
                 setPrompt(val);
                 runAnalysis(val);
               }}
-              className="px-3 py-1.5 rounded-lg bg-slate-800/60 hover:bg-slate-700/80 text-slate-300 border border-slate-700/60 transition cursor-pointer"
+              style={{ padding: "6px 12px", borderRadius: "8px", backgroundColor: "rgba(30, 41, 59, 0.7)", color: "#cbd5e1", border: "1px solid rgba(71, 85, 105, 0.6)", cursor: "pointer" }}
             >
               🟢 Swap 0.5 SOL → USDC
             </button>
@@ -183,91 +176,64 @@ export default function Home() {
                 setPrompt(val);
                 runAnalysis(val);
               }}
-              className="px-3 py-1.5 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 border border-rose-800/50 transition flex items-center gap-1.5 cursor-pointer"
+              style={{ padding: "6px 12px", borderRadius: "8px", backgroundColor: "rgba(76, 5, 25, 0.5)", color: "#fda4af", border: "1px solid rgba(159, 18, 57, 0.6)", cursor: "pointer", display: "flex", alignItems: "center", gap: "6px" }}
             >
-              <AlertTriangle className="w-3.5 h-3.5" /> 🔴 Malicious Drainer Phish
+              <AlertTriangle style={{ width: "14px", height: "14px" }} /> 🔴 Malicious Drainer Phish
             </button>
           </div>
         </section>
 
-        {/* Loading Spinner */}
+        {/* Loading */}
         {isAuditing && (
-          <div className="mt-6 p-6 rounded-2xl border border-slate-800/80 bg-slate-950/50 text-center animate-pulse flex flex-col items-center justify-center gap-2">
-            <Terminal className="w-6 h-6 text-cyan-400 animate-spin" />
-            <p className="text-xs text-slate-300 font-mono">Gemini analyzing intent & simulating instruction diffs...</p>
+          <div style={{ marginTop: "24px", padding: "24px", borderRadius: "16px", border: "1px solid rgba(51, 65, 85, 0.8)", backgroundColor: "rgba(2, 6, 23, 0.5)", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+            <Terminal style={{ width: "24px", height: "24px", color: "#22d3ee" }} />
+            <p style={{ fontSize: "13px", color: "#cbd5e1", fontFamily: "monospace", margin: 0 }}>Gemini analyzing intent & simulating instruction diffs...</p>
           </div>
         )}
 
-        {/* Audit Result Card */}
+        {/* Audit Result */}
         {audit && !isAuditing && (
-          <section
-            className={`mt-6 rounded-2xl p-6 border transition-all ${
-              audit.status === "danger"
-                ? "bg-rose-950/25 border-rose-500/30 shadow-lg shadow-rose-950/20"
-                : "bg-emerald-950/25 border-emerald-500/30 shadow-lg shadow-emerald-950/20"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2.5">
-                {audit.status === "danger" ? (
-                  <ShieldAlert className="w-6 h-6 text-rose-400" />
-                ) : (
-                  <ShieldCheck className="w-6 h-6 text-emerald-400" />
-                )}
-                <h2 className="text-base font-bold text-white tracking-wide">
-                  {audit.status === "danger" ? "Transaction Blocked by Firewall" : "Transaction Verified & Audited"}
-                </h2>
+          <section style={{ marginTop: "24px", borderRadius: "16px", padding: "24px", border: audit.status === "danger" ? "1px solid rgba(244, 63, 94, 0.4)" : "1px solid rgba(16, 185, 129, 0.4)", backgroundColor: audit.status === "danger" ? "rgba(76, 5, 25, 0.3)" : "rgba(6, 78, 59, 0.3)" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                {audit.status === "danger" ? <ShieldAlert style={{ width: "24px", height: "24px", color: "#fb7185" }} /> : <ShieldCheck style={{ width: "24px", height: "24px", color: "#34d399" }} />}
+                <h2 style={{ fontSize: "16px", fontWeight: "700", color: "#fff", margin: 0 }}>{audit.status === "danger" ? "Transaction Blocked by Firewall" : "Transaction Verified & Audited"}</h2>
               </div>
-              <span
-                className={`text-xs px-3 py-1 rounded-full font-mono font-bold ${
-                  audit.status === "danger"
-                    ? "bg-rose-500/20 text-rose-400 border border-rose-500/30"
-                    : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                }`}
-              >
+              <span style={{ fontSize: "12px", padding: "4px 12px", borderRadius: "9999px", fontFamily: "monospace", fontWeight: "700", backgroundColor: audit.status === "danger" ? "rgba(244, 63, 94, 0.2)" : "rgba(16, 185, 129, 0.2)", color: audit.status === "danger" ? "#fb7185" : "#34d399", border: audit.status === "danger" ? "1px solid rgba(244, 63, 94, 0.4)" : "1px solid rgba(16, 185, 129, 0.4)" }}>
                 Risk Score: {audit.riskScore}/100
               </span>
             </div>
 
-            <p className="text-xs text-slate-300 mb-5 bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 leading-relaxed font-mono">
+            <p style={{ fontSize: "13px", color: "#e2e8f0", marginBottom: "20px", backgroundColor: "rgba(2, 6, 23, 0.7)", padding: "14px", borderRadius: "12px", border: "1px solid rgba(51, 65, 85, 0.8)", lineHeight: "1.6", fontFamily: "monospace" }}>
               {audit.summary}
             </p>
 
-            {/* Simulated Balance Diff */}
-            <div className="grid grid-cols-2 gap-3 text-xs font-mono mb-5">
-              <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
-                <span className="text-[10px] text-slate-500 uppercase font-semibold block mb-1">Outgoing (Simulated)</span>
-                <span className="text-rose-400 font-semibold text-sm">{audit.outflow}</span>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", fontSize: "12px", fontFamily: "monospace", marginBottom: "20px" }}>
+              <div style={{ padding: "14px", borderRadius: "12px", backgroundColor: "rgba(2, 6, 23, 0.7)", border: "1px solid rgba(51, 65, 85, 0.8)" }}>
+                <span style={{ color: "#64748b", textTransform: "uppercase", fontWeight: "600", fontSize: "10px", display: "block", marginBottom: "4px" }}>Outgoing (Simulated)</span>
+                <span style={{ color: "#fb7185", fontWeight: "700", fontSize: "14px" }}>{audit.outflow}</span>
               </div>
-              <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
-                <span className="text-[10px] text-slate-500 uppercase font-semibold block mb-1">Incoming (Simulated)</span>
-                <span className="text-emerald-400 font-semibold text-sm">{audit.inflow}</span>
+              <div style={{ padding: "14px", borderRadius: "12px", backgroundColor: "rgba(2, 6, 23, 0.7)", border: "1px solid rgba(51, 65, 85, 0.8)" }}>
+                <span style={{ color: "#64748b", textTransform: "uppercase", fontWeight: "600", fontSize: "10px", display: "block", marginBottom: "4px" }}>Incoming (Simulated)</span>
+                <span style={{ color: "#34d399", fontWeight: "700", fontSize: "14px" }}>{audit.inflow}</span>
               </div>
             </div>
 
-            {/* Action Buttons */}
             <div>
               {audit.status === "danger" ? (
-                <button
-                  disabled
-                  className="w-full bg-slate-900 border border-slate-800 text-slate-500 font-semibold py-3.5 rounded-xl text-xs uppercase tracking-wider cursor-not-allowed"
-                >
+                <button disabled style={{ width: "100%", backgroundColor: "#0f172a", border: "1px solid #334155", color: "#64748b", fontWeight: "600", padding: "14px", borderRadius: "12px", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.05em", cursor: "not-allowed" }}>
                   🔒 Signature Blocked (Critical Threat Prevented)
                 </button>
               ) : (
-                <button
-                  onClick={handleSignTransaction}
-                  className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold py-3.5 rounded-xl text-sm transition-all shadow-lg shadow-emerald-500/20 cursor-pointer"
-                >
+                <button onClick={handleSignTransaction} style={{ width: "100%", background: "linear-gradient(to right, #10b981, #14b8a6)", color: "#020617", fontWeight: "700", padding: "14px", borderRadius: "12px", fontSize: "14px", border: "none", cursor: "pointer", boxShadow: "0 10px 15px -3px rgba(16, 185, 129, 0.2)" }}>
                   Sign & Execute on Solana ✍️
                 </button>
               )}
             </div>
 
-            {/* Native Toast Confirmation */}
             {signatureStatus && (
-              <div className="mt-4 p-3 bg-emerald-950/40 border border-emerald-500/40 rounded-xl flex items-center justify-center gap-2 text-xs text-emerald-300 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <div style={{ marginTop: "16px", padding: "12px", backgroundColor: "rgba(6, 78, 59, 0.4)", border: "1px solid rgba(16, 185, 129, 0.4)", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", fontSize: "13px", color: "#6ee7b7", fontWeight: "500" }}>
+                <CheckCircle2 style={{ width: "16px", height: "16px", color: "#34d399" }} />
                 {signatureStatus}
               </div>
             )}
