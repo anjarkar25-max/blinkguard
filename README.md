@@ -62,6 +62,14 @@ User / Agent Prompt
              ├─► [Simulation] Expected in/out balances confirmed
              └─► [Wallet] Phantom signs preflight attestation receipt
 
+🤖 Solana Agent Skill Endpoint
+
+BlinkGuard exposes a standardized agent tool definition accessible via GET/POST at:
+
+https://blinkguard-uoq6-six.vercel.app/api/skill
+Manifest Schema (GET /api/skill)
+JSON
+
 {
   "name": "blinkguard_preflight_firewall",
   "description": "Simulates and audits Solana transactions or user prompts before signing. Detects malicious drainers, unbounded token delegations, and excessive slippage.",
@@ -81,29 +89,57 @@ User / Agent Prompt
   }
 }
 
-{
-  "prompt": "Swap 0.5 SOL to USDC",
-  "userAddress": "YourSolanaPublicKeyHere"
+Direct SDK Integration
+
+You can integrate BlinkGuard directly using lib/solanaAgentSkill.ts:
+TypeScript
+
+import { blinkGuardAgentSkill } from "@/lib/solanaAgentSkill";
+
+// Execute preflight audit before signing
+const result = await blinkGuardAgentSkill.execute({
+  prompt: "Swap 0.5 SOL to USDC",
+  userAddress: "YourSolanaPublicKeyHere",
+});
+
+if (!result.allowed) {
+  console.error("Execution blocked by BlinkGuard:", result.reason);
 }
 
-{
-  "allowed": true,
-  "riskScore": 3,
-  "action": "VERIFIED",
-  "reason": "Transaction verified benign via Jupiter V6 standard route."
-}
+💻 Local Setup & Development
+1. Clone the Repository
+Bash
 
-{
-  "allowed": false,
-  "riskScore": 99,
-  "action": "BLOCKED",
-  "reason": "Unbounded authority delegation / drainer signature vector detected."
-}
+git clone [https://github.com/anjarkar25-max/blinkguard.git](https://github.com/anjarkar25-max/blinkguard.git)
+cd blinkguard
 
-### Request Payload
-```json
-{
-  "prompt": "Swap 0.5 SOL to USDC with 1% slippage",
-  "userAddress": "YourSolanaPublicKeyHere"
-}
-```
+2. Install Dependencies
+Bash
+
+npm install
+
+3. Configure Environment Variables
+
+Create a .env.local file in the root directory:
+Code snippet
+
+GEMINI_API_KEY=your_gemini_api_key_here
+NEXT_PUBLIC_HELIUS_RPC=[https://api.mainnet-beta.solana.com](https://api.mainnet-beta.solana.com)
+
+4. Run Development Server
+Bash
+
+npm run dev
+
+Open http://localhost:3000 to inspect the interface locally.
+🏆 Hackathon Tracks & Prize Categories
+
+    Top 3 Overall: Complete, deployed end-to-end security firewall with live wallet signing.
+
+    DeFi Track Top Prize: Real-time token routing, slippage control, and quote verification powered by Jupiter v6.
+
+    AI Track Top Prize: Dynamic structured threat evaluation via Gemini 2.5 Flash and modular Solana Agent Skill integration.
+
+📄 License
+
+MIT License. Built for the MLH Solana Hackathon
